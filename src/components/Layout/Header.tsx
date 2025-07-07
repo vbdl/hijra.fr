@@ -31,7 +31,7 @@ const Header: React.FC = () => {
                 className="h-16 w-auto max-w-none group-hover:scale-105 transition-transform duration-300"
                 style={{ 
                   objectFit: 'contain', 
-                  maxHeight: '64px',
+                  maxHeight: '200px',
                   width: 'auto',
                   minWidth: '120px'
                 }}
