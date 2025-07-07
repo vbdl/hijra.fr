@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
             <Link to="/" className="flex items-center mb-6">
               <div className="relative flex items-center justify-center w-auto">
                 <img 
-                  src="https://i.ibb.co/354tYvH2/hijra-logo.png" 
+                  src="https://i.ibb.co/LdQvZzHs/Capture-d-e-cran-2025-07-07-a-16-42-22.png" 
                   alt="Hijra.fr Logo" 
                   className="h-12 w-auto max-w-none"
                   style={{ 

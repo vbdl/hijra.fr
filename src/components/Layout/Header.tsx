@@ -26,12 +26,12 @@ const Header: React.FC = () => {
           <Link to="/" className="flex items-center group py-2 flex-shrink-0">
             <div className="relative flex items-center justify-center w-auto">
               <img 
-                src="https://i.ibb.co/354tYvH2/hijra-logo.png" 
+                src="https://i.ibb.co/LdQvZzHs/Capture-d-e-cran-2025-07-07-a-16-42-22.png" 
                 alt="Hijra.fr Logo" 
                 className="h-16 w-auto max-w-none group-hover:scale-105 transition-transform duration-300"
                 style={{ 
                   objectFit: 'contain', 
-                  maxHeight: '200px',
+                  maxHeight: '64px',
                   width: 'auto',
                   minWidth: '120px'
                 }}
