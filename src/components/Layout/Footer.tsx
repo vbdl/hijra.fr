@@ -9,12 +9,13 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 lg:col-span-2">
-            <Link to="/" className="flex items-center space-x-3 mb-4">
+            <Link to="/" className="flex items-center mb-4">
               <div className="relative">
                 <img 
                   src="https://i.ibb.co/354tYvH2/hijra-logo.png" 
                   alt="Hijra.fr Logo" 
-                  className="h-8 w-auto"
+                  className="h-10 w-auto max-w-none"
+                  style={{ objectFit: 'contain' }}
                   onError={(e) => {
                     // Fallback to local image if external URL fails
                     e.currentTarget.src = "/Capture d'écran 2024-07-10 à 16.14.36.png";

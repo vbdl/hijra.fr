@@ -23,12 +23,13 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+          <Link to="/" className="flex items-center group">
             <div className="relative">
               <img 
                 src="https://i.ibb.co/354tYvH2/hijra-logo.png" 
                 alt="Hijra.fr Logo" 
-                className="h-10 w-auto group-hover:scale-110 transition-transform duration-300"
+                className="h-12 w-auto max-w-none group-hover:scale-105 transition-transform duration-300"
+                style={{ objectFit: 'contain' }}
                 onError={(e) => {
                   // Fallback to local image if external URL fails
                   e.currentTarget.src = "/Capture d'écran 2024-07-10 à 16.14.36.png";
