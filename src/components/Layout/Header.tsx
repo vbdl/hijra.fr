@@ -23,13 +23,18 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 py-2">
           {/* Logo */}
-          <Link to="/" className="flex items-center group py-2">
-            <div className="relative flex items-center justify-center">
+          <Link to="/" className="flex items-center group py-2 flex-shrink-0">
+            <div className="relative flex items-center justify-center w-auto">
               <img 
                 src="https://i.ibb.co/354tYvH2/hijra-logo.png" 
                 alt="Hijra.fr Logo" 
                 className="h-16 w-auto max-w-none group-hover:scale-105 transition-transform duration-300"
-                style={{ objectFit: 'contain', maxHeight: '64px' }}
+                style={{ 
+                  objectFit: 'contain', 
+                  maxHeight: '64px',
+                  width: 'auto',
+                  minWidth: '120px'
+                }}
                 onError={(e) => {
                   // Fallback to local image if external URL fails
                   e.currentTarget.src = "/Capture d'écran 2024-07-10 à 16.14.36.png";
@@ -39,7 +44,7 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-8 flex-1 justify-center">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -59,7 +64,7 @@ const Header: React.FC = () => {
           </nav>
 
           {/* User Menu */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4 flex-shrink-0">
             {user ? (
               <div className="flex items-center space-x-3">
                 <Link
@@ -100,7 +105,7 @@ const Header: React.FC = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-brand-green/10 transition-colors"
+            className="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-brand-green/10 transition-colors flex-shrink-0"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
