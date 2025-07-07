@@ -26,7 +26,7 @@ const Header: React.FC = () => {
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative">
               <img 
-                src="/Capture d'écran 2024-07-10 à 16.14.36 copy.png" 
+                src="https://ibb.co/354tYvH2" 
                 alt="Hijra.fr Logo" 
                 className="h-10 w-auto group-hover:scale-110 transition-transform duration-300"
               />
