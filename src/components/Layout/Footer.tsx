@@ -12,9 +12,13 @@ const Footer: React.FC = () => {
             <Link to="/" className="flex items-center space-x-3 mb-4">
               <div className="relative">
                 <img 
-                  src="/Capture d'écran 2024-07-10 à 16.14.36 copy.png" 
+                  src="https://i.ibb.co/354tYvH2/hijra-logo.png" 
                   alt="Hijra.fr Logo" 
                   className="h-8 w-auto"
+                  onError={(e) => {
+                    // Fallback to local image if external URL fails
+                    e.currentTarget.src = "/Capture d'écran 2024-07-10 à 16.14.36.png";
+                  }}
                 />
               </div>
             </Link>
