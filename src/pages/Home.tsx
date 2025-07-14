@@ -10,9 +10,19 @@ const Home: React.FC = () => {
   // Carousel images from our destinations
   const carouselImages = [
     {
-      url: 'https://images.pexels.com/photos/13408685/pexels-photo-13408685.jpegauto=compress&cs=tinysrgb&w=1600',
+      url: 'https://images.pexels.com/photos/13408685/pexels-photo-13408685.jpeg?auto=compress&cs=tinysrgb&w=1600',
       alt: 'Skyline de Doha avec ses gratte-ciels modernes',
       destination: 'Qatar - Doha'
+    },
+    {
+    url: 'https://images.pexels.com/photos/9254283/pexels-photo-9254283.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Ghardaia, la sentinelle du Sahara',
+      destination: 'Ghardaïa - Algérie'
+    },
+    {
+    url: 'https://images.pexels.com/photos/11259857/pexels-photo-11259857.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Médine, ville sainte',
+      destination: 'Médine - Arabie Saoudite'
     },
     {
       url: 'https://images.pexels.com/photos/2115367/pexels-photo-2115367.jpeg?auto=compress&cs=tinysrgb&w=1600',
@@ -22,7 +32,22 @@ const Home: React.FC = () => {
     {
       url: 'https://images.pexels.com/photos/28289056/pexels-photo-28289056.jpeg?auto=compress&cs=tinysrgb&w=1600',
       alt: 'Mosquée Hassan II à Casablanca',
-      destination: 'Maroc - Marrakech'
+      destination: 'Maroc - Casablanca'
+    },
+      {
+    url: 'https://images.pexels.com/photos/6188071/pexels-photo-6188071.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Manama capitale du royaume de Bahreïn',
+      destination: 'Manama - Bahreïn'
+    },
+      {
+    url: 'https://images.pexels.com/photos/3414922/pexels-photo-3414922.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Skyline de Koweit city',
+      destination: 'Koweït City - Koweït'
+    },
+    {
+    url: 'https://images.pexels.com/photos/6327724/pexels-photo-6327724.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Montagnes du Dhofar',
+      destination: 'Mascate - Oman'
     },
     {
       url: 'https://images.pexels.com/photos/3815533/pexels-photo-3815533.jpeg?auto=compress&cs=tinysrgb&w=1600',
@@ -33,6 +58,11 @@ const Home: React.FC = () => {
       url: 'https://images.pexels.com/photos/19820376/pexels-photo-19820376.jpeg?auto=compress&cs=tinysrgb&w=1600',
       alt: 'Assouan, rives du Nil',
       destination: 'Égypte - Assouan'
+    },
+      {
+      url: 'https://images.pexels.com/photos/891126/pexels-photo-891126.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Ruelles typiques de Sousse',
+      destination: 'Sousse - Tunisie'
     },
     {
       url: 'https://images.pexels.com/photos/3999943/pexels-photo-3999943.jpeg?auto=compress&cs=tinysrgb&w=1600',
