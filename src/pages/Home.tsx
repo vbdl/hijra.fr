@@ -2,22 +2,59 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Briefcase, Users, Shield, Globe, Star } from 'lucide-react';
 import { destinations } from '../data/destinations';
+import ImageCarousel from '../components/UI/ImageCarousel';
 
 const Home: React.FC = () => {
   const featuredDestinations = destinations.slice(0, 6);
 
+  // Carousel images from our destinations
+  const carouselImages = [
+    {
+      url: 'https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Skyline moderne du Qatar',
+      destination: 'Qatar - Doha'
+    },
+    {
+      url: 'https://images.pexels.com/photos/1680247/pexels-photo-1680247.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Architecture moderne des Émirats',
+      destination: 'Émirats Arabes Unis - Dubai'
+    },
+    {
+      url: 'https://images.pexels.com/photos/739407/pexels-photo-739407.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Médina traditionnelle du Maroc',
+      destination: 'Maroc - Marrakech'
+    },
+    {
+      url: 'https://images.pexels.com/photos/1470502/pexels-photo-1470502.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Tours Petronas en Malaisie',
+      destination: 'Malaisie - Kuala Lumpur'
+    },
+    {
+      url: 'https://images.pexels.com/photos/262780/pexels-photo-262780.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Pyramides et sphinx en Égypte',
+      destination: 'Égypte - Le Caire'
+    },
+    {
+      url: 'https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Mosquée Bleue en Turquie',
+      destination: 'Turquie - Istanbul'
+    }
+  ];
+
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-brand-green via-brand-sage to-brand-mint text-white overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-sage opacity-90"></div>
+      <section className="relative text-white overflow-hidden min-h-[600px] lg:min-h-[700px]">
+        {/* Image Carousel Background */}
+        <ImageCarousel images={carouselImages} autoPlay={true} interval={6000} />
+        
+        {/* Content Overlay */}
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 animate-slide-up">
               Votre <span className="text-yellow-300 drop-shadow-lg">Hijra</span> commence ici
             </h1>
-            <p className="text-xl lg:text-2xl mb-8 text-green-50 animate-slide-up drop-shadow-sm" style={{ animationDelay: '0.1s' }}>
+            <p className="text-xl lg:text-2xl mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
               Accompagnement personnalisé pour votre expatriation vers les terres d'Islam
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
@@ -37,9 +74,6 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-        {/* Decorative elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-yellow-300/20 rounded-full blur-2xl"></div>
       </section>
 
       {/* Stats Section */}
