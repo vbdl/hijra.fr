@@ -52,7 +52,7 @@ const Home: React.FC = () => {
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 animate-slide-up">
-              Votre <span className="text-yellow-300 drop-shadow-lg">Hijra</span> commence ici
+              Votre <span className="bg-gradient-to-r from-brand-green to-brand-sage bg-clip-text text-transparent drop-shadow-lg">Hijra</span> commence ici
             </h1>
             <p className="text-xl lg:text-2xl mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
               Accompagnement personnalisé pour votre expatriation vers les terres d'Islam
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
               <Link
                 to="/destinations"
-                className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-brand-navy px-8 py-4 rounded-lg font-semibold text-lg hover:from-yellow-300 hover:to-yellow-400 transition-all duration-300 inline-flex items-center group shadow-lg transform hover:scale-105"
+                className="bg-gradient-to-r from-brand-green to-brand-sage text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-brand-green-dark hover:to-brand-green transition-all duration-300 inline-flex items-center group shadow-lg transform hover:scale-105"
               >
                 Explorer les destinations
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
