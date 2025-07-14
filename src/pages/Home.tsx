@@ -10,32 +10,32 @@ const Home: React.FC = () => {
   // Carousel images from our destinations
   const carouselImages = [
     {
-      url: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      url: 'https://images.pexels.com/photos/13408685/pexels-photo-13408685.jpegauto=compress&cs=tinysrgb&w=1600',
       alt: 'Skyline de Doha avec ses gratte-ciels modernes',
       destination: 'Qatar - Doha'
     },
     {
-      url: 'https://images.pexels.com/photos/1470502/pexels-photo-1470502.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      url: 'https://images.pexels.com/photos/2115367/pexels-photo-2115367.jpeg?auto=compress&cs=tinysrgb&w=1600',
       alt: 'Burj Khalifa et skyline de Dubai',
       destination: 'Émirats Arabes Unis - Dubai'
     },
     {
-      url: 'https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      url: 'https://images.pexels.com/photos/28289056/pexels-photo-28289056.jpeg?auto=compress&cs=tinysrgb&w=1600',
       alt: 'Mosquée Hassan II à Casablanca',
       destination: 'Maroc - Marrakech'
     },
     {
-      url: 'https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      url: 'https://images.pexels.com/photos/3815533/pexels-photo-3815533.jpeg?auto=compress&cs=tinysrgb&w=1600',
       alt: 'Tours Petronas illuminées à Kuala Lumpur',
       destination: 'Malaisie - Kuala Lumpur'
     },
     {
-      url: 'https://images.pexels.com/photos/71241/pexels-photo-71241.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      alt: 'Pyramides de Gizeh au coucher du soleil',
-      destination: 'Égypte - Le Caire'
+      url: 'https://images.pexels.com/photos/19820376/pexels-photo-19820376.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      alt: 'Assouan, rives du Nil',
+      destination: 'Égypte - Assouan'
     },
     {
-      url: 'https://images.pexels.com/photos/1486222/pexels-photo-1486222.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      url: 'https://images.pexels.com/photos/3999943/pexels-photo-3999943.jpeg?auto=compress&cs=tinysrgb&w=1600',
       alt: 'Mosquée Bleue et Sainte-Sophie à Istanbul',
       destination: 'Turquie - Istanbul'
     }
