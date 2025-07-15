@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { AdminAuthProvider } from './contexts/AdminAuthContext';
 import Layout from './components/Layout/Layout';
+import AdminLayout from './components/Admin/AdminLayout';
 import Home from './pages/Home';
 import Destinations from './pages/Destinations';
 import DestinationDetail from './pages/DestinationDetail';
@@ -13,33 +15,67 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import AdminProtectedRoute from './components/Admin/AdminProtectedRoute';
+import AdminLogin from './pages/Admin/AdminLogin';
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminRequests from './pages/Admin/AdminRequests';
+import AdminUsers from './pages/Admin/AdminUsers';
+import AdminDocuments from './pages/Admin/AdminDocuments';
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="destinations" element={<Destinations />} />
-            <Route path="destinations/:id" element={<DestinationDetail />} />
-            <Route path="jobs" element={<Jobs />} />
-            <Route path="assistance" element={<Assistance />} />
-            <Route path="services/:countryId" element={<CountryServices />} />
-            <Route path="payment" element={<Payment />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route 
-              path="dashboard" 
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              } 
-            />
-          </Route>
-        </Routes>
-      </Router>
+      <AdminAuthProvider>
+        <Router>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="destinations" element={<Destinations />} />
+              <Route path="destinations/:id" element={<DestinationDetail />} />
+              <Route path="jobs" element={<Jobs />} />
+              <Route path="assistance" element={<Assistance />} />
+              <Route path="services/:countryId" element={<CountryServices />} />
+              <Route path="payment" element={<Payment />} />
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+              <Route 
+                path="dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                } 
+              />
+            </Route>
+
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={
+              <AdminProtectedRoute>
+                <AdminLayout />
+              </AdminProtectedRoute>
+            }>
+              <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="requests" element={
+                <AdminProtectedRoute requiredPermission="manage_requests">
+                  <AdminRequests />
+                </AdminProtectedRoute>
+              } />
+              <Route path="users" element={
+                <AdminProtectedRoute requiredPermission="manage_users">
+                  <AdminUsers />
+                </AdminProtectedRoute>
+              } />
+              <Route path="documents" element={
+                <AdminProtectedRoute requiredPermission="manage_documents">
+                  <AdminDocuments />
+                </AdminProtectedRoute>
+              } />
+            </Route>
+          </Routes>
+        </Router>
+      </AdminAuthProvider>
     </AuthProvider>
   );
 }
