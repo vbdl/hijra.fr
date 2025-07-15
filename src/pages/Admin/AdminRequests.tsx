@@ -287,6 +287,8 @@ const AdminRequests: React.FC = () => {
                         }`}>
                   </Link>
                         </span>
+                    </div>
+                <div>
                       </div>
                   )}
                   <button className="flex items-center px-3 py-2 text-sm bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition-colors">
