@@ -21,6 +21,7 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminRequests from './pages/Admin/AdminRequests';
 import AdminUsers from './pages/Admin/AdminUsers';
 import AdminDocuments from './pages/Admin/AdminDocuments';
+import AdminRequestDetail from './pages/Admin/AdminRequestDetail';
 
 function App() {
   return (
@@ -60,6 +61,11 @@ function App() {
               <Route path="requests" element={
                 <AdminProtectedRoute requiredPermission="manage_requests">
                   <AdminRequests />
+                </AdminProtectedRoute>
+              } />
+              <Route path="requests/:id" element={
+                <AdminProtectedRoute requiredPermission="manage_requests">
+                  <AdminRequestDetail />
                 </AdminProtectedRoute>
               } />
               <Route path="users" element={

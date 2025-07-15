@@ -8,7 +8,33 @@ export interface AdminUser {
   createdAt: string;
 }
 
-export interface AssistanceRequestAdmin extends AssistanceRequest {
+export interface PaymentInfo {
+  id: string;
+  provider: 'stripe' | 'paypal' | 'bank_transfer';
+  status: 'pending' | 'processing' | 'completed' | 'failed' | 'refunded';
+  amount: number;
+  currency: string;
+  transactionId?: string;
+  paymentMethodId?: string;
+  createdAt: string;
+  completedAt?: string;
+  failureReason?: string;
+  refundId?: string;
+  refundAmount?: number;
+  refundedAt?: string;
+  metadata?: Record<string, any>;
+}
+
+export interface AssistanceRequestAdmin {
+  id: string;
+  userId: string;
+  type: 'administrative' | 'employment' | 'entrepreneurship' | 'complete';
+  destination: string;
+  description: string;
+  status: 'pending' | 'in-progress' | 'completed' | 'cancelled';
+  createdAt: string;
+  updatedAt: string;
+  price: number;
   user: {
     id: string;
     name: string;
@@ -19,6 +45,9 @@ export interface AssistanceRequestAdmin extends AssistanceRequest {
   assignedTo?: string;
   priority: 'low' | 'medium' | 'high' | 'urgent';
   notes: AdminNote[];
+  payment?: PaymentInfo;
+  services: string[];
+  deadline?: string;
 }
 
 export interface Document {
@@ -56,6 +85,14 @@ export interface UserProfile {
   totalSpent: number;
   documents: Document[];
   notes: AdminNote[];
+  lastPayment?: {
+    id: string;
+    provider: 'stripe' | 'paypal';
+    amount: number;
+    currency: string;
+    date: string;
+    status: string;
+  };
 }
 
 export interface AdminStats {

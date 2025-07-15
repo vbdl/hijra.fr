@@ -109,12 +109,38 @@ const AdminDocuments: React.FC = () => {
 
   const handleApprove = (docId: string) => {
     console.log('Approving document:', docId);
-    // In real app, this would call API
+    // Simulate API call
+    setTimeout(() => {
+      alert('Document approuvé avec succès');
+      // In real app, this would update the document status
+    }, 500);
   };
 
   const handleReject = (docId: string) => {
     console.log('Rejecting document:', docId);
-    // In real app, this would call API
+    const reason = prompt('Raison du rejet:');
+    if (reason) {
+      // Simulate API call
+      setTimeout(() => {
+        alert('Document rejeté avec succès');
+        // In real app, this would update the document status
+      }, 500);
+    }
+  };
+
+  const handleDownload = (doc: Document) => {
+    // Simulate file download
+    const link = document.createElement('a');
+    link.href = doc.url;
+    link.download = doc.name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handlePreview = (doc: Document) => {
+    // Open document in new tab for preview
+    window.open(doc.url, '_blank');
   };
 
   return (
@@ -283,11 +309,17 @@ const AdminDocuments: React.FC = () => {
                   </div>
 
                   <div className="flex flex-col space-y-2 ml-6">
-                    <button className="flex items-center px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors">
+                    <button 
+                      onClick={() => handlePreview(document)}
+                      className="flex items-center px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
+                    >
                       <Eye className="h-4 w-4 mr-2" />
                       Prévisualiser
                     </button>
-                    <button className="flex items-center px-3 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                    <button 
+                      onClick={() => handleDownload(document)}
+                      className="flex items-center px-3 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                    >
                       <Download className="h-4 w-4 mr-2" />
                       Télécharger
                     </button>

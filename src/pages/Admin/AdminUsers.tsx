@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Search, 
   Filter, 
@@ -10,7 +11,9 @@ import {
   MapPin,
   Calendar,
   DollarSign,
-  FileText
+  FileText,
+  MessageSquare,
+  CreditCard
 } from 'lucide-react';
 import { UserProfile } from '../../types/admin';
 
@@ -32,7 +35,15 @@ const AdminUsers: React.FC = () => {
       assistanceRequests: 3,
       totalSpent: 1200,
       documents: [],
-      notes: []
+      notes: [],
+      lastPayment: {
+        id: 'pi_1234567890',
+        provider: 'stripe',
+        amount: 500,
+        currency: 'EUR',
+        date: '2024-01-10T09:45:00Z',
+        status: 'completed'
+      }
     },
     {
       id: 'user_456',
@@ -45,7 +56,15 @@ const AdminUsers: React.FC = () => {
       assistanceRequests: 1,
       totalSpent: 300,
       documents: [],
-      notes: []
+      notes: [],
+      lastPayment: {
+        id: 'PAYID-123456',
+        provider: 'paypal',
+        amount: 300,
+        currency: 'EUR',
+        date: '2024-01-12T14:30:00Z',
+        status: 'completed'
+      }
     },
     {
       id: 'user_789',
@@ -59,7 +78,8 @@ const AdminUsers: React.FC = () => {
       assistanceRequests: 0,
       totalSpent: 0,
       documents: [],
-      notes: []
+      notes: [],
+      lastPayment: undefined
     }
   ];
 
@@ -256,17 +276,38 @@ const AdminUsers: React.FC = () => {
                         {new Date(user.lastActivity).toLocaleDateString('fr-FR')}
                       </p>
                     </div>
+                    {user.lastPayment && (
+                      <div className="bg-green-50 p-3 rounded-lg">
+                        <p className="text-green-600 font-medium">Dernier paiement</p>
+                        <div className="flex items-center space-x-2">
+                          <CreditCard className="h-4 w-4 text-green-600" />
+                          <span className="text-sm text-green-700">
+                            {user.lastPayment.amount} {user.lastPayment.currency} via {user.lastPayment.provider}
+                          </span>
+                        </div>
+                        <p className="text-xs text-green-600">
+                          {new Date(user.lastPayment.date).toLocaleDateString('fr-FR')}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 <div className="flex flex-col space-y-2 ml-6">
-                  <button className="flex items-center px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors">
+                  <Link
+                    to={`/admin/users/${user.id}`}
+                    className="flex items-center px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
+                  >
                     <Eye className="h-4 w-4 mr-2" />
                     Voir profil
-                  </button>
+                  </Link>
                   <button className="flex items-center px-3 py-2 text-sm bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition-colors">
                     <Edit className="h-4 w-4 mr-2" />
                     Modifier
+                  </button>
+                  <button className="flex items-center px-3 py-2 text-sm bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors">
+                    <MessageSquare className="h-4 w-4 mr-2" />
+                    Contacter
                   </button>
                   <button className="flex items-center px-3 py-2 text-sm bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors">
                     <Ban className="h-4 w-4 mr-2" />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Search, 
   Filter, 
@@ -9,9 +10,12 @@ import {
   AlertCircle,
   User,
   MapPin,
-  Calendar
+  Calendar,
+  CreditCard,
+  DollarSign
 } from 'lucide-react';
 import { AssistanceRequestAdmin } from '../../types/admin';
+import { paymentService } from '../../services/paymentService';
 
 const AdminRequests: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -57,7 +61,19 @@ const AdminRequests: React.FC = () => {
           createdAt: '2024-01-10T12:00:00Z',
           type: 'internal'
         }
-      ]
+      ],
+      payment: {
+        id: 'pi_1234567890',
+        provider: 'stripe',
+        status: 'completed',
+        amount: 500,
+        currency: 'EUR',
+        transactionId: 'pi_1234567890',
+        createdAt: '2024-01-10T09:45:00Z',
+        completedAt: '2024-01-10T09:46:00Z'
+      },
+      services: ['Visa de résidence', 'Assistance administrative'],
+      deadline: '2024-02-10T00:00:00Z'
     },
     {
       id: '2',
@@ -75,7 +91,19 @@ const AdminRequests: React.FC = () => {
       },
       documents: [],
       priority: 'medium',
-      notes: []
+      notes: [],
+      payment: {
+        id: 'PAYID-123456',
+        provider: 'paypal',
+        status: 'completed',
+        amount: 300,
+        currency: 'EUR',
+        transactionId: 'PAYID-123456',
+        createdAt: '2024-01-12T14:30:00Z',
+        completedAt: '2024-01-12T14:31:00Z'
+      },
+      services: ['Permis de travail'],
+      deadline: '2024-02-15T00:00:00Z'
     }
   ];
 
@@ -237,7 +265,35 @@ const AdminRequests: React.FC = () => {
                       <MessageSquare className="h-4 w-4 mr-2" />
                       Ajouter note
                     </button>
+                    {request.payment && (
+                      <span className="flex items-center">
+                        <CreditCard className="h-3 w-3 mr-1" />
+                        {request.payment.provider === 'stripe' ? 'Stripe' : 'PayPal'}
+                      </span>
+                    )}
                   </div>
+
+                  {request.payment && (
+                    <div className="mt-3 p-3 bg-green-50 rounded-lg">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-green-700">
+                          Paiement: {request.payment.amount} {request.payment.currency}
+                        </span>
+                  <Link
+                    to={`/admin/requests/${request.id}`}
+                    className="flex items-center px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
+                  >
+                          paymentService.getPaymentStatusColor(request.payment.status, request.payment.provider)
+                        }`}>
+                  </Link>
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  <button className="flex items-center px-3 py-2 text-sm bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition-colors">
+                    <DollarSign className="h-4 w-4 mr-2" />
+                    Paiement
+                  </button>
                 </div>
               </div>
             );
