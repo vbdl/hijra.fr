@@ -279,22 +279,17 @@ const AdminRequests: React.FC = () => {
                         <span className="text-sm text-green-700">
                           Paiement: {request.payment.amount} {request.payment.currency}
                         </span>
-                <span></span>  <Link
+                        <Link
                     to={`/admin/requests/${request.id}`}
-                    className="flex items-center px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
+                    className={`text-xs px-2 py-1 rounded-full ${
+                      paymentService.getPaymentStatusColor(request.payment.status, request.payment.provider)
+                    }`}
                   >
-                          paymentService.getPaymentStatusColor(request.payment.status, request.payment.provider)
-                        }`}>
-                  </Link>
-                        </span>
+                          {paymentService.getPaymentStatusText(request.payment.status)}
+                        </Link>
+                       </div>
                     </div>
-                <div>
-                      </div>
                   )}
-                  <button className="flex items-center px-3 py-2 text-sm bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition-colors">
-                    <DollarSign className="h-4 w-4 mr-2" />
-                    Paiement
-                  </button>
                 </div>
               </div>
             );
