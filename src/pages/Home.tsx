@@ -76,7 +76,14 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section className="relative text-white overflow-hidden min-h-[600px] lg:min-h-[700px]">
         {/* Image Carousel Background */}
-        <ImageCarousel images={carouselImages} autoPlay={true} interval={6000} />
+    
+        <ImageCarousel 
+          images={carouselImages} 
+          autoPlay={true} 
+          interval={6000} 
+          showArrows={false} 
+          showDots={false} 
+        />
         
         {/* Content Overlay */}
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
