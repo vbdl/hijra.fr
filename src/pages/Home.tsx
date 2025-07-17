@@ -85,7 +85,7 @@ const Home: React.FC = () => {
               Votre <span className="bg-gradient-to-r from-brand-green to-brand-sage bg-clip-text text-transparent drop-shadow-lg">Hijra</span> commence ici
             </h1>
             <p className="text-xl lg:text-2xl mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
-             وَمَن يُهَاجِرْ فِى سَبِيلِ ٱللَّهِ يَجِدْ فِى ٱلْأَرْضِ مُرَٰغَمًۭا كَثِيرًۭا وَسَعَةًۭ ۞ 
+وَمَن يُهَاجِرْ فِى سَبِيلِ ٱللَّهِ يَجِدْ فِى ٱلْأَرْضِ مُرَٰغَمًۭا كَثِيرًۭا وَسَعَةًۭ ۞ 
             </p><p>
               Et quiconque émigre dans le sentier d’Allah trouvera sur terre maints refuges et abondance.
             </p>
