@@ -82,12 +82,12 @@ const Home: React.FC = () => {
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 animate-slide-up">
-              Votre <span className="bg-gradient-to-r from-brand-green to-brand-sage bg-clip-text text-transparent drop-shadow-lg">Hijra</span> commence ici
+              Votre <span className="bg-gradient-to-r from-brand-green to-brand-sage bg-clip-text text-transparent drop-shadow-lg">hijra</span> commence ici
             </h1>
             <p className="text-xl lg:text-2xl mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
 وَمَن يُهَاجِرْ فِى سَبِيلِ ٱللَّهِ يَجِدْ فِى ٱلْأَرْضِ مُرَٰغَمًۭا كَثِيرًۭا وَسَعَةًۭ ۞
             </p>
-            <p className="text-lg lg:text-xl mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
+            <p className="text-sm lg:text-base mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
               Et quiconque émigre dans le sentier d’Allah trouvera sur terre maints refuges et abondance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
