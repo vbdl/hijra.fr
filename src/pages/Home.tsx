@@ -87,7 +87,7 @@ const Home: React.FC = () => {
             <p className="text-xl lg:text-2xl mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
 وَمَن يُهَاجِرْ فِى سَبِيلِ ٱللَّهِ يَجِدْ فِى ٱلْأَرْضِ مُرَٰغَمًۭا كَثِيرًۭا وَسَعَةًۭ ۞
             </p>
-            <p className="text-sm lg:text-base mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
+            <p className="text-base lg:text-lg  mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
               Et quiconque émigre dans le sentier d’Allah trouvera sur terre maints refuges et abondance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
