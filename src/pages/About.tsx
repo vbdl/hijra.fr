@@ -90,7 +90,7 @@ const About: React.FC = () => {
           </p>
           <div className="flex justify-center">
             <img 
-              src="https://images.pexels.com/photos/8728380/pexels-photo-8728380.jpeg?auto=compress&cs=tinysrgb&w=800"
+              src="https://images.unsplash.com/photo-1669664321705-4fd219f489dc?q=80&w=2137&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=compress&cs=tinysrgb&w=800"
               alt="Communauté musulmane unie"
               className="rounded-xl shadow-2xl max-w-2xl w-full h-64 object-cover"
             />
