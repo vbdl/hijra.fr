@@ -237,6 +237,12 @@ const Assistance: React.FC = () => {
               >
                 Explorer les destinations
               </Link>
+              <Link
+                to="/contact"
+                className="bg-white text-brand-green px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Nous contacter
+              </Link>
             </div>
           </div>
         </div>

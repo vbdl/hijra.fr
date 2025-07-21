@@ -348,7 +348,7 @@ const About: React.FC = () => {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
-              to="/assistance"
+              to="/contact"
               className="border-2 border-white/80 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 backdrop-blur-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center"
             >
               <Phone className="mr-2 h-5 w-5" />
