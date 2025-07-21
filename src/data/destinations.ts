@@ -16,7 +16,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 4.02 QAR',
     requirements: ['Visa de travail', 'Contrat d\'emploi', 'Certificat médical', 'Diplômes authentifiés'],
-    image: 'https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/13408685/pexels-photo-13408685.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'uae',
@@ -33,7 +33,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 4.05 AED',
     requirements: ['Visa de résidence', 'Sponsorship employeur', 'Assurance santé', 'Certificat de bonne conduite'],
-    image: 'https://images.pexels.com/photos/1680247/pexels-photo-1680247.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/2115367/pexels-photo-2115367.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'kuwait',
@@ -50,7 +50,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 0.34 KWD',
     requirements: ['Visa de travail', 'Certificat médical', 'Diplômes attestés', 'Contrat d\'emploi'],
-    image: 'https://images.pexels.com/photos/981093/pexels-photo-981093.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/3414922/pexels-photo-3414922.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'bahrain',
@@ -67,7 +67,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 0.42 BHD',
     requirements: ['Permis de travail', 'Visa de résidence', 'Examen médical', 'Certification des diplômes'],
-    image: 'https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/6188071/pexels-photo-6188071.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'oman',
@@ -84,7 +84,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 0.42 OMR',
     requirements: ['Visa de travail', 'Sponsorship', 'Certificat de santé', 'Diplômes légalisés'],
-    image: 'https://images.pexels.com/photos/4825715/pexels-photo-4825715.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/6327724/pexels-photo-6327724.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'morocco',
@@ -101,7 +101,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 10.85 MAD',
     requirements: ['Carte de séjour', 'Justificatifs de revenus', 'Casier judiciaire', 'Certificat médical'],
-    image: 'https://images.pexels.com/photos/739407/pexels-photo-739407.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/28289056/pexels-photo-28289056.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'tunisia',
@@ -118,7 +118,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 3.45 TND',
     requirements: ['Titre de séjour', 'Justificatifs financiers', 'Certificat médical', 'Casier judiciaire'],
-    image: 'https://images.pexels.com/photos/4825715/pexels-photo-4825715.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/891126/pexels-photo-891126.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'egypt',
@@ -135,7 +135,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 32.85 EGP',
     requirements: ['Visa de résidence', 'Permis de travail', 'Certificat de santé', 'Diplômes traduits'],
-    image: 'https://images.pexels.com/photos/262780/pexels-photo-262780.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/19820376/pexels-photo-19820376.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'turkey',
@@ -152,7 +152,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 28.50 TRY',
     requirements: ['Permis de résidence', 'Assurance santé', 'Justificatifs de revenus', 'Certificat de bonne conduite'],
-    image: 'https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/3999943/pexels-photo-3999943.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'malaysia',
@@ -169,7 +169,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 5.15 MYR',
     requirements: ['Programme MM2H', 'Justificatifs financiers', 'Assurance santé', 'Casier judiciaire'],
-    image: 'https://images.pexels.com/photos/1470502/pexels-photo-1470502.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/3815533/pexels-photo-3815533.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'saudi-arabia',
@@ -186,7 +186,7 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 4.12 SAR',
     requirements: ['Visa de travail', 'Sponsorship', 'Certificat médical', 'Diplômes authentifiés'],
-    image: 'https://images.pexels.com/photos/3935702/pexels-photo-3935702.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/11259857/pexels-photo-11259857.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: 'algeria',
@@ -203,6 +203,6 @@ export const destinations: Destination[] = [
     },
     exchangeRate: '1 EUR = 148.50 DZD',
     requirements: ['Visa de séjour', 'Justificatifs de revenus', 'Certificat médical', 'Casier judiciaire'],
-    image: 'https://images.pexels.com/photos/2832382/pexels-photo-2832382.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: 'https://images.pexels.com/photos/9254283/pexels-photo-9254283.jpeg?auto=compress&cs=tinysrgb&w=800'
   }
 ];
