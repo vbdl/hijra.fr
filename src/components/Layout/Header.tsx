@@ -76,6 +76,12 @@ const Header: React.FC = () => {
                   </div>
                   <span className="text-sm font-medium">{user.name}</span>
                 </Link>
+                <Link
+                  to="/profile"
+                  className="text-gray-500 hover:text-brand-green transition-colors"
+                >
+                  <span className="text-sm">Profil</span>
+                </Link>
                 <button
                   onClick={logout}
                   className="flex items-center space-x-1 text-gray-500 hover:text-red-600 transition-colors"
@@ -137,6 +143,14 @@ const Header: React.FC = () => {
                   >
                     <User className="h-5 w-5" />
                     <span>{user.name}</span>
+                  </Link>
+                  <Link
+                    to="/profile"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center space-x-2 text-gray-700 hover:text-brand-green px-2 py-1"
+                  >
+                    <User className="h-5 w-5" />
+                    <span>Mon Profil</span>
                   </Link>
                   <button
                     onClick={() => {

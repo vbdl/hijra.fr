@@ -23,6 +23,8 @@ import AdminUsers from './pages/Admin/AdminUsers';
 import AdminDocuments from './pages/Admin/AdminDocuments';
 import AdminRequestDetail from './pages/Admin/AdminRequestDetail';
 import About from './pages/About';
+import Contact from './pages/Contact';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -40,6 +42,7 @@ function App() {
               <Route path="services/:countryId" element={<CountryServices />} />
               <Route path="payment" element={<Payment />} />
               <Route path="about" element={<About />} />
+              <Route path="contact" element={<Contact />} />
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
               <Route 
@@ -47,6 +50,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Dashboard />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="profile" 
+                element={
+                  <ProtectedRoute>
+                    <Profile />
                   </ProtectedRoute>
                 } 
               />
