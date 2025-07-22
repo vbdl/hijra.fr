@@ -87,13 +87,13 @@ const About: React.FC = () => {
             backgroundImage: 'url(https://img.freepik.com/premium-vector/abstract-islamic-background-design-with-geometric-shape-white-background-vector_51543-1098.jpg?w=1800)'
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-green/80 via-brand-sage/80 to-brand-mint/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-green/0 via-brand-sage/80 to-brand-mint/80"></div>
         <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
         <div className="absolute bottom-10 right-10 w-24 h-24 bg-yellow-300/20 rounded-full blur-xl"></div>
         
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-            À propos de Hijra.fr
+            À propos de hijra.fr
           </h1>
           <p className="text-xl lg:text-2xl text-green-100 mb-8 max-w-3xl mx-auto drop-shadow-sm">
             Plus qu'une plateforme, une communauté dédiée à votre réussite
