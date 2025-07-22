@@ -63,14 +63,18 @@ const About: React.FC = () => {
   ];
 
   const destinations = [
-    { name: 'Qatar', flag: '🇶🇦' },
-    { name: 'Émirats Arabes Unis', flag: '🇦🇪' },
+    { name: 'Algérie', flag: '🇩🇿'' },
     { name: 'Arabie Saoudite', flag: '🇸🇦' },
-    { name: 'Maroc', flag: '🇲🇦' },
-    { name: 'Tunisie', flag: '🇹🇳' },
+    { name: 'Bahreïn', flag: '🇧🇭' },
+    { name: 'Égypte', flag: '🇪🇬' },
+    { name: 'Émirats Arabes Unis', flag: '🇦🇪' },
+    { name: 'Koweït', flag: '🇰🇼' },
     { name: 'Malaisie', flag: '🇲🇾' },
+    { name: 'Maroc', flag: '🇲🇦' },
+    { name: 'Oman', flag: '🇴🇲' },
+    { name: 'Qatar', flag: '🇶🇦' },
+    { name: 'Tunisie', flag: '🇹🇳' },
     { name: 'Turquie', flag: '🇹🇷' },
-    { name: 'Égypte', flag: '🇪🇬' }
   ];
 
   return (
@@ -214,7 +218,7 @@ const About: React.FC = () => {
           {/* Destinations Grid */}
           <div className="bg-gradient-to-br from-brand-green/10 to-brand-mint/10 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">
-              Nos destinations partenaires
+              Nos destinations
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {destinations.map((destination, index) => (
