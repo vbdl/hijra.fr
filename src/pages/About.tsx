@@ -63,7 +63,7 @@ const About: React.FC = () => {
   ];
 
   const destinations = [
-    { name: 'Algérie', flag: '🇩🇿'' },
+    { name: 'Algérie', flag: '🇩🇿' },
     { name: 'Arabie Saoudite', flag: '🇸🇦' },
     { name: 'Bahreïn', flag: '🇧🇭' },
     { name: 'Égypte', flag: '🇪🇬' },
