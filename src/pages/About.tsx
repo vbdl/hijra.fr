@@ -116,7 +116,7 @@ const About: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  <strong className="text-brand-green">Hijra.fr</strong> est une communauté en ligne et une plateforme dédiée aux 
+                  <strong className="text-brand-green">hijra.fr</strong> est une communauté en ligne et une plateforme dédiée aux 
                   mouhajirouns de France, créée dans le but d'aider nos frères et sœurs à obtenir des informations 
                   fiables et à préparer leur hijra vers un pays musulman.
                 </p>
