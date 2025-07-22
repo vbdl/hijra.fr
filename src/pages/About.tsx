@@ -80,8 +80,14 @@ const About: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-forest py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-green via-brand-sage to-brand-mint opacity-90"></div>
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(https://img.freepik.com/premium-vector/abstract-islamic-background-design-with-geometric-shape-white-background-vector_51543-1098.jpg?w=1800)'
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-green/80 via-brand-sage/80 to-brand-mint/80"></div>
         <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
         <div className="absolute bottom-10 right-10 w-24 h-24 bg-yellow-300/20 rounded-full blur-xl"></div>
         
