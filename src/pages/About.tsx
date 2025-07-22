@@ -87,7 +87,7 @@ const About: React.FC = () => {
             backgroundImage: 'url(https://img.freepik.com/premium-vector/abstract-islamic-background-design-with-geometric-shape-white-background-vector_51543-1098.jpg?w=1800)'
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-green/0 via-brand-sage/80 to-brand-mint/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-green/0 via-brand-sage/0 to-brand-mint/0"></div>
         <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
         <div className="absolute bottom-10 right-10 w-24 h-24 bg-yellow-300/20 rounded-full blur-xl"></div>
         
