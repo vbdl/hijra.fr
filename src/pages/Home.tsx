@@ -74,9 +74,8 @@ const Home: React.FC = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative text-white overflow-hidden min-h-[600px] lg:min-h-[700px]">
+      <section className="relative text-white overflow-hidden min-h-[600px] lg:min-h-[700px] flex items-center justify-center">
         {/* Image Carousel Background */}
-    
         <ImageCarousel 
           images={carouselImages} 
           autoPlay={true} 
@@ -85,32 +84,34 @@ const Home: React.FC = () => {
           showDots={false} 
         />
         
-        {/* Content Overlay */}
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 animate-slide-up">
-              Votre <span className="bg-gradient-to-r from-brand-green to-brand-sage bg-clip-text text-transparent drop-shadow-lg">hijra</span> commence ici
-            </h1>
-            <p className="text-xl lg:text-2xl text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
+        {/* Content Overlay - Centré verticalement et horizontalement */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl lg:text-6xl font-bold mb-6 animate-slide-up">
+                Votre <span className="bg-gradient-to-r from-brand-green to-brand-sage bg-clip-text text-transparent drop-shadow-lg">hijra</span> commence ici
+              </h1>
+              <p className="text-xl lg:text-2xl text-white animate-slide-up drop-shadow-lg mb-4" style={{ animationDelay: '0.1s' }}>
 وَمَن يُهَاجِرْ فِى سَبِيلِ ٱللَّهِ يَجِدْ فِى ٱلْأَرْضِ مُرَٰغَمًۭا كَثِيرًۭا وَسَعَةًۭ ۞
-            </p>
-            <p className="text-base lg:text-lg  mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
-              Et quiconque émigre dans le sentier d’Allah trouvera sur terre maints refuges et abondance.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              <Link
-                to="/destinations"
-                className="bg-gradient-to-r from-brand-green to-brand-sage text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-brand-green-dark hover:to-brand-green transition-all duration-300 inline-flex items-center group shadow-lg transform hover:scale-105"
-              >
-                Explorer les destinations
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                to="/assistance"
-                className="border-2 border-white/80 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 backdrop-blur-sm transition-all duration-300 shadow-lg"
-              >
-                Demander de l'aide
-              </Link>
+              </p>
+              <p className="text-base lg:text-lg mb-8 text-white animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
+                Et quiconque émigre dans le sentier d'Allah trouvera sur terre maints refuges et abondance.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                <Link
+                  to="/destinations"
+                  className="bg-gradient-to-r from-brand-green to-brand-sage text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-brand-green-dark hover:to-brand-green transition-all duration-300 inline-flex items-center justify-center group shadow-lg transform hover:scale-105"
+                >
+                  Explorer les destinations
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  to="/assistance"
+                  className="border-2 border-white/80 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 backdrop-blur-sm transition-all duration-300 shadow-lg flex items-center justify-center"
+                >
+                  Demander de l'aide
+                </Link>
+              </div>
             </div>
           </div>
         </div>
