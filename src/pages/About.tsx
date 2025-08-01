@@ -92,10 +92,10 @@ const About: React.FC = () => {
         <div className="absolute bottom-10 right-10 w-24 h-24 bg-yellow-300/20 rounded-full blur-xl"></div>
         
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+          <h1 className="text-4xl lg:text-6xl font-bold text-lightgrey mb-6 drop-shadow-lg">
             À propos de hijra.fr
           </h1>
-          <p className="text-xl lg:text-2xl text-green-100 mb-8 max-w-3xl mx-auto drop-shadow-sm">
+          <p className="text-xl lg:text-2xl text-black-100 mb-8 max-w-3xl mx-auto drop-shadow-sm">
             Plus qu'une plateforme, une communauté dédiée à votre réussite
           </p>
           <div className="flex justify-center">
