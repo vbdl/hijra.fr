@@ -12,7 +12,8 @@ export const jobs: Job[] = [
     description: 'Recherche ingénieur expérimenté en développement web et mobile pour projets innovants.',
     requirements: ['5+ ans d\'expérience', 'React/Node.js', 'Anglais courant', 'Diplôme en informatique'],
     postedAt: '2024-01-15',
-    featured: true
+    featured: true,
+    premium: false
   },
   {
     id: '2',
@@ -25,7 +26,8 @@ export const jobs: Job[] = [
     description: 'Conseil en produits financiers conformes à la Sharia pour clientèle internationale.',
     requirements: ['Certification finance islamique', 'Expérience bancaire', 'Arabe et anglais', 'Mobilité internationale'],
     postedAt: '2024-01-14',
-    featured: true
+    featured: true,
+    premium: true
   },
   {
     id: '3',
@@ -38,7 +40,8 @@ export const jobs: Job[] = [
     description: 'Enseignement du français langue étrangère dans école internationale prestigieuse.',
     requirements: ['Master FLE', '3+ ans d\'expérience', 'Certification internationale', 'Adaptabilité culturelle'],
     postedAt: '2024-01-13',
-    featured: false
+    featured: false,
+    premium: false
   },
   {
     id: '4',
@@ -51,7 +54,8 @@ export const jobs: Job[] = [
     description: 'Gestion de campagnes marketing digital pour marques régionales et internationales.',
     requirements: ['5+ ans marketing digital', 'Google Ads & Meta', 'Anglais natif', 'Créativité'],
     postedAt: '2024-01-12',
-    featured: false
+    featured: false,
+    premium: true
   },
   {
     id: '5',
@@ -64,7 +68,8 @@ export const jobs: Job[] = [
     description: 'Conception de projets urbains durables dans le cadre de la Vision Oman 2040.',
     requirements: ['Diplôme architecture', 'Expérience projets urbains', 'AutoCAD/3D', 'Vision durable'],
     postedAt: '2024-01-11',
-    featured: false
+    featured: false,
+    premium: true
   },
   {
     id: '6',
@@ -77,7 +82,8 @@ export const jobs: Job[] = [
     description: 'Développement d\'applications mobiles pour startups marocaines en croissance.',
     requirements: ['Flutter/Dart', '3+ ans mobile', 'Firebase', 'Français/Arabe'],
     postedAt: '2024-01-10',
-    featured: false
+    featured: false,
+    premium: false
   },
   {
     id: '7',
@@ -90,7 +96,8 @@ export const jobs: Job[] = [
     description: 'Consultation en médecine générale pour patientèle internationale francophone.',
     requirements: ['Diplôme médecine', 'Équivalence Tunisie', 'Français courant', 'Expérience clinique'],
     postedAt: '2024-01-09',
-    featured: false
+    featured: false,
+    premium: false
   },
   {
     id: '8',
@@ -103,6 +110,35 @@ export const jobs: Job[] = [
     description: 'Accompagnement de groupes francophones sur sites historiques et culturels.',
     requirements: ['Formation tourisme', 'Histoire de l\'Égypte', 'Multilingue', 'Charisme'],
     postedAt: '2024-01-08',
-    featured: false
+    featured: false,
+    premium: false
+  },
+  {
+    id: '9',
+    title: 'Directeur Technique Senior',
+    company: 'Saudi Aramco Digital',
+    location: 'Riyadh',
+    country: 'Saudi Arabia',
+    type: 'full-time',
+    salary: '15000-20000€/mois',
+    description: 'Direction technique d\'équipes de développement pour projets stratégiques de transformation digitale.',
+    requirements: ['10+ ans leadership technique', 'Architecture cloud', 'Gestion d\'équipes', 'Anglais/Arabe'],
+    postedAt: '2024-01-16',
+    featured: true,
+    premium: true
+  },
+  {
+    id: '10',
+    title: 'Spécialiste Cybersécurité',
+    company: 'Emirates Cyber Defense',
+    location: 'Abu Dhabi',
+    country: 'UAE',
+    type: 'full-time',
+    salary: '9000-13000€/mois',
+    description: 'Protection des infrastructures critiques et analyse des menaces cybernétiques.',
+    requirements: ['Certifications CISSP/CEH', 'Expérience SOC', 'Analyse forensique', 'Sécurité cloud'],
+    postedAt: '2024-01-16',
+    featured: false,
+    premium: true
   }
 ];

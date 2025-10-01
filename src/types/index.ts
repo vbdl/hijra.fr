@@ -36,6 +36,7 @@ export interface Job {
   requirements: string[];
   postedAt: string;
   featured: boolean;
+  premium: boolean;
 }
 
 export interface AssistanceRequest {
