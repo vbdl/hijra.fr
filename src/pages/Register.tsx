@@ -15,7 +15,7 @@ const Register: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
-  const { register, loading } = useAuth();
+  const { signUp, loading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,10 +33,10 @@ const Register: React.FC = () => {
     }
 
     try {
-      await register(formData.email, formData.password, formData.name);
+      await signUp(formData.email, formData.password, formData.name);
       navigate('/dashboard');
-    } catch (err) {
-      setError('Erreur lors de l\'inscription. Veuillez réessayer.');
+    } catch (err: any) {
+      setError(err.message || 'Erreur lors de l\'inscription. Veuillez réessayer.');
     }
   };
 

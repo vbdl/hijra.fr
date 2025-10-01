@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   User, 
@@ -10,12 +10,21 @@ import {
   AlertCircle,
   TrendingUp,
   Calendar,
-  Bell
+  Bell,
+  Crown,
+  CreditCard,
+  ShoppingCart
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { supabase } from '../lib/supabase';
+import { stripeProducts, getProductByPriceId } from '../stripe-config';
+import Button from '../components/UI/Button';
 
 const Dashboard: React.FC = () => {
-  const { user } = useAuth();
+  const { user, session } = useAuth();
+  const [subscription, setSubscription] = useState<any>(null);
+  const [orders, setOrders] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   // Mock data - in real app, this would come from API
   const stats = {
@@ -61,6 +70,78 @@ const Dashboard: React.FC = () => {
     }
   ];
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (!user) return;
+
+      try {
+        // Fetch subscription data
+        const { data: subData, error: subError } = await supabase
+          .from('stripe_user_subscriptions')
+          .select('*')
+          .maybeSingle();
+
+        if (subError) {
+          console.error('Error fetching subscription:', subError);
+        } else {
+          setSubscription(subData);
+        }
+
+        // Fetch orders data
+        const { data: ordersData, error: ordersError } = await supabase
+          .from('stripe_user_orders')
+          .select('*')
+          .order('order_date', { ascending: false })
+          .limit(5);
+
+        if (ordersError) {
+          console.error('Error fetching orders:', ordersError);
+        } else {
+          setOrders(ordersData || []);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [user]);
+
+  const handlePurchase = async (priceId: string, mode: 'payment' | 'subscription') => {
+    if (!session?.access_token) {
+      console.error('No access token available');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/stripe-checkout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({
+          price_id: priceId,
+          success_url: `${window.location.origin}/success`,
+          cancel_url: `${window.location.origin}/dashboard`,
+          mode,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('No checkout URL returned');
+      }
+    } catch (error) {
+      console.error('Error creating checkout session:', error);
+    }
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed': return 'text-green-600 bg-green-100';
@@ -88,17 +169,50 @@ const Dashboard: React.FC = () => {
     }
   };
 
+  const formatCurrency = (amount: number, currency: string) => {
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: currency,
+    }).format(amount);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-brand-green/5 py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/2 mb-8"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="bg-white rounded-xl p-6 h-32"></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-brand-green/5 py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-brand-green to-brand-sage bg-clip-text text-transparent">
-            Bonjour, {user?.name} 👋
+            Bonjour, {user?.user_metadata?.name || user?.email} 👋
           </h1>
           <p className="text-gray-600 mt-2">
             Voici un aperçu de votre progression vers votre Hijra
           </p>
+          {subscription && subscription.subscription_status === 'active' && (
+            <div className="mt-4 inline-flex items-center bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-4 py-2 rounded-lg">
+              <Crown className="h-4 w-4 mr-2" />
+              <span className="font-medium">
+                {getProductByPriceId(subscription.price_id)?.name || 'Plan Premium'}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Stats Cards */}
@@ -217,6 +331,39 @@ const Dashboard: React.FC = () => {
               )}
             </div>
 
+            {/* Recent Orders */}
+            {orders.length > 0 && (
+              <div className="bg-white rounded-xl shadow-sm p-6 border border-brand-green/10">
+                <h2 className="text-xl font-bold text-gray-900 mb-6">Mes achats récents</h2>
+                <div className="space-y-4">
+                  {orders.map((order) => (
+                    <div key={order.order_id} className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="font-medium text-gray-900">
+                            Commande #{order.order_id}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            {new Date(order.order_date).toLocaleDateString('fr-FR')}
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-bold text-brand-green">
+                            {formatCurrency(order.amount_total / 100, order.currency)}
+                          </p>
+                          <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                            order.payment_status === 'paid' ? 'text-green-600 bg-green-100' : 'text-yellow-600 bg-yellow-100'
+                          }`}>
+                            {order.payment_status === 'paid' ? 'Payé' : 'En attente'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Saved Jobs */}
             <div className="bg-white rounded-xl shadow-sm p-6 border border-brand-green/10">
               <div className="flex items-center justify-between mb-6">
@@ -287,6 +434,33 @@ const Dashboard: React.FC = () => {
                   </div>
                   <span className="text-gray-700 group-hover:text-brand-green transition-colors">Demander de l'aide</span>
                 </Link>
+              </div>
+            </div>
+
+            {/* Available Products */}
+            <div className="bg-white rounded-xl shadow-sm p-6 border border-brand-green/10">
+              <h3 className="text-lg font-bold text-gray-900 mb-4">Services disponibles</h3>
+              <div className="space-y-4">
+                {stripeProducts.slice(0, 3).map((product) => (
+                  <div key={product.id} className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <h4 className="font-medium text-gray-900 text-sm">{product.name}</h4>
+                      <span className="text-brand-green font-bold text-sm">
+                        {formatCurrency(product.price, product.currency)}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-600 mb-3 line-clamp-2">{product.description}</p>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => handlePurchase(product.priceId, product.mode)}
+                    >
+                      <ShoppingCart className="h-3 w-3 mr-2" />
+                      {product.mode === 'subscription' ? 'S\'abonner' : 'Acheter'}
+                    </Button>
+                  </div>
+                ))}
               </div>
             </div>
 

@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, LogOut } from 'lucide-react';
+import { Menu, X, User, LogOut, Crown } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { supabase } from '../../lib/supabase';
+import { getProductByPriceId } from '../../stripe-config';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logout } = useAuth();
+  const [subscriptionPlan, setSubscriptionPlan] = useState<string | null>(null);
+  const { user, signOut } = useAuth();
   const location = useLocation();
 
   const navigation = [
@@ -17,6 +20,38 @@ const Header: React.FC = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+
+  useEffect(() => {
+    const fetchSubscription = async () => {
+      if (!user) {
+        setSubscriptionPlan(null);
+        return;
+      }
+
+      try {
+        const { data, error } = await supabase
+          .from('stripe_user_subscriptions')
+          .select('price_id, subscription_status')
+          .maybeSingle();
+
+        if (error) {
+          console.error('Error fetching subscription:', error);
+          return;
+        }
+
+        if (data && data.price_id && data.subscription_status === 'active') {
+          const product = getProductByPriceId(data.price_id);
+          setSubscriptionPlan(product?.name || null);
+        } else {
+          setSubscriptionPlan(null);
+        }
+      } catch (error) {
+        console.error('Error fetching subscription:', error);
+      }
+    };
+
+    fetchSubscription();
+  }, [user]);
 
   return (
     <header className="bg-white/95 backdrop-blur-sm shadow-sm border-b border-brand-green/10 sticky top-0 z-50">
@@ -74,7 +109,15 @@ const Header: React.FC = () => {
                   <div className="bg-gradient-to-br from-brand-green to-brand-sage p-1.5 rounded-full">
                     <User className="h-4 w-4 text-white" />
                   </div>
-                  <span className="text-sm font-medium">{user.name}</span>
+                  <div className="flex flex-col">
+                    <span className="text-sm font-medium">{user.user_metadata?.name || user.email}</span>
+                    {subscriptionPlan && (
+                      <div className="flex items-center">
+                        <Crown className="h-3 w-3 text-yellow-500 mr-1" />
+                        <span className="text-xs text-yellow-600">{subscriptionPlan}</span>
+                      </div>
+                    )}
+                  </div>
                 </Link>
                 <Link
                   to="/profile"
@@ -83,7 +126,7 @@ const Header: React.FC = () => {
                   <span className="text-sm">Profil</span>
                 </Link>
                 <button
-                  onClick={logout}
+                  onClick={signOut}
                   className="flex items-center space-x-1 text-gray-500 hover:text-red-600 transition-colors"
                 >
                   <LogOut className="h-4 w-4" />
@@ -142,7 +185,15 @@ const Header: React.FC = () => {
                     className="flex items-center space-x-2 text-gray-700 hover:text-brand-green px-2 py-1"
                   >
                     <User className="h-5 w-5" />
-                    <span>{user.name}</span>
+                    <div>
+                      <span>{user.user_metadata?.name || user.email}</span>
+                      {subscriptionPlan && (
+                        <div className="flex items-center">
+                          <Crown className="h-3 w-3 text-yellow-500 mr-1" />
+                          <span className="text-xs text-yellow-600">{subscriptionPlan}</span>
+                        </div>
+                      )}
+                    </div>
                   </Link>
                   <Link
                     to="/profile"
@@ -154,7 +205,7 @@ const Header: React.FC = () => {
                   </Link>
                   <button
                     onClick={() => {
-                      logout();
+                      signOut();
                       setIsMenuOpen(false);
                     }}
                     className="flex items-center space-x-2 text-red-600 hover:text-red-700 px-2 py-1"

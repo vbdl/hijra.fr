@@ -1,5 +1,15 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { User, AuthContextType } from '../types';
+import { User, Session } from '@supabase/supabase-js';
+import { supabase } from '../lib/supabase';
+
+interface AuthContextType {
+  user: User | null;
+  session: Session | null;
+  signUp: (email: string, password: string, name: string) => Promise<void>;
+  signIn: (email: string, password: string) => Promise<void>;
+  signOut: () => Promise<void>;
+  loading: boolean;
+}
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -17,72 +27,82 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for stored user data
-    const storedUser = localStorage.getItem('hijra_user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const signUp = async (email: string, password: string, name: string) => {
     setLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Mock user data
-      const userData: User = {
-        id: '1',
+      const { error } = await supabase.auth.signUp({
         email,
-        name: email.split('@')[0],
-        joinedAt: new Date().toISOString(),
-      };
-      
-      setUser(userData);
-      localStorage.setItem('hijra_user', JSON.stringify(userData));
+        password,
+        options: {
+          data: {
+            name,
+          },
+        },
+      });
+      if (error) throw error;
     } catch (error) {
-      throw new Error('Erreur de connexion');
+      throw error;
     } finally {
       setLoading(false);
     }
   };
 
-  const register = async (email: string, password: string, name: string) => {
+  const signIn = async (email: string, password: string) => {
     setLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const userData: User = {
-        id: '1',
+      const { error } = await supabase.auth.signInWithPassword({
         email,
-        name,
-        joinedAt: new Date().toISOString(),
-      };
-      
-      setUser(userData);
-      localStorage.setItem('hijra_user', JSON.stringify(userData));
+        password,
+      });
+      if (error) throw error;
     } catch (error) {
-      throw new Error('Erreur lors de l\'inscription');
+      throw error;
     } finally {
       setLoading(false);
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('hijra_user');
+  const signOut = async () => {
+    setLoading(true);
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+    } catch (error) {
+      throw error;
+    } finally {
+      setLoading(false);
+    }
   };
 
   const value: AuthContextType = {
     user,
-    login,
-    register,
-    logout,
+    session,
+    signUp,
+    signIn,
+    signOut,
     loading,
   };
 

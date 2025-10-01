@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const { login, loading } = useAuth();
+  const { signIn, loading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -17,10 +17,10 @@ const Login: React.FC = () => {
     setError('');
 
     try {
-      await login(email, password);
+      await signIn(email, password);
       navigate('/dashboard');
-    } catch (err) {
-      setError('Email ou mot de passe incorrect');
+    } catch (err: any) {
+      setError(err.message || 'Email ou mot de passe incorrect');
     }
   };
 

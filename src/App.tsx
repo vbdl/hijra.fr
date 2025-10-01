@@ -14,6 +14,7 @@ import Payment from './pages/Payment';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Success from './pages/Success';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminProtectedRoute from './components/Admin/AdminProtectedRoute';
 import AdminLogin from './pages/Admin/AdminLogin';
@@ -45,6 +46,7 @@ function App() {
               <Route path="contact" element={<Contact />} />
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
+              <Route path="success" element={<Success />} />
               <Route 
                 path="dashboard" 
                 element={
