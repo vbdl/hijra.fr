@@ -4,10 +4,12 @@ import { Menu, X, User, LogOut, Crown } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
 import { getProductByPriceId } from '../../stripe-config';
+import PremiumModal from '../UI/PremiumModal';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [subscriptionPlan, setSubscriptionPlan] = useState<string | null>(null);
+  const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
   const { user, signOut } = useAuth();
   const location = useLocation();
 
@@ -102,6 +104,15 @@ const Header: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4 flex-shrink-0">
             {user ? (
               <div className="flex items-center space-x-3">
+                {!subscriptionPlan && (
+                  <button
+                    onClick={() => setIsPremiumModalOpen(true)}
+                    className="flex items-center space-x-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 shadow-md transform hover:scale-105"
+                  >
+                    <Crown className="h-4 w-4" />
+                    <span>Devenir premium</span>
+                  </button>
+                )}
                 <Link
                   to="/dashboard"
                   className="flex items-center space-x-2 text-gray-700 hover:text-brand-green transition-colors group"
@@ -135,6 +146,13 @@ const Header: React.FC = () => {
               </div>
             ) : (
               <div className="flex items-center space-x-3">
+                <button
+                  onClick={() => setIsPremiumModalOpen(true)}
+                  className="flex items-center space-x-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 shadow-md transform hover:scale-105"
+                >
+                  <Crown className="h-4 w-4" />
+                  <span>Devenir premium</span>
+                </button>
                 <Link
                   to="/login"
                   className="text-sm font-medium text-gray-700 hover:text-brand-green transition-colors"
@@ -179,6 +197,18 @@ const Header: React.FC = () => {
               
               {user ? (
                 <div className="pt-3 border-t border-brand-green/10 space-y-3">
+                  {!subscriptionPlan && (
+                    <button
+                      onClick={() => {
+                        setIsPremiumModalOpen(true);
+                        setIsMenuOpen(false);
+                      }}
+                      className="flex items-center justify-center space-x-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 w-full"
+                    >
+                      <Crown className="h-4 w-4" />
+                      <span>Devenir premium</span>
+                    </button>
+                  )}
                   <Link
                     to="/dashboard"
                     onClick={() => setIsMenuOpen(false)}
@@ -216,6 +246,16 @@ const Header: React.FC = () => {
                 </div>
               ) : (
                 <div className="pt-3 border-t border-brand-green/10 space-y-3">
+                  <button
+                    onClick={() => {
+                      setIsPremiumModalOpen(true);
+                      setIsMenuOpen(false);
+                    }}
+                    className="flex items-center justify-center space-x-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 w-full"
+                  >
+                    <Crown className="h-4 w-4" />
+                    <span>Devenir premium</span>
+                  </button>
                   <Link
                     to="/login"
                     onClick={() => setIsMenuOpen(false)}
@@ -236,6 +276,11 @@ const Header: React.FC = () => {
           </div>
         )}
       </div>
+
+      <PremiumModal
+        isOpen={isPremiumModalOpen}
+        onClose={() => setIsPremiumModalOpen(false)}
+      />
     </header>
   );
 };
