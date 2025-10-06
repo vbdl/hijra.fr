@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { 
-  Search, 
-  MapPin, 
-  Clock, 
-  DollarSign, 
-  Star, 
-  Filter, 
-  Crown, 
+import React, { useState, useEffect } from 'react';
+import {
+  Search,
+  MapPin,
+  Clock,
+  DollarSign,
+  Star,
+  Filter,
+  Crown,
   Lock,
   Calendar,
   FileText,
@@ -22,6 +22,8 @@ import { jobs } from '../data/jobs';
 import { destinations } from '../data/destinations';
 import { useAuth } from '../contexts/AuthContext';
 import Button from '../components/UI/Button';
+import PremiumModal from '../components/UI/PremiumModal';
+import { supabase } from '../lib/supabase';
 
 const Jobs: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -42,9 +44,11 @@ const Jobs: React.FC = () => {
     message: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
-  
+  const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
+  const [isPremiumUser, setIsPremiumUser] = useState(false);
+  const [loadingSubscription, setLoadingSubscription] = useState(true);
+
   const { user } = useAuth();
-  const isPremiumUser = false; // In real app, this would come from user subscription status
 
   const countries = Array.from(new Set(jobs.map(job => job.country)));
   const jobTypes = [
@@ -122,6 +126,37 @@ const Jobs: React.FC = () => {
       [e.target.name]: e.target.value
     });
   };
+
+  useEffect(() => {
+    const fetchSubscription = async () => {
+      if (!user) {
+        setIsPremiumUser(false);
+        setLoadingSubscription(false);
+        return;
+      }
+
+      try {
+        const { data, error } = await supabase
+          .from('stripe_user_subscriptions')
+          .select('subscription_status')
+          .maybeSingle();
+
+        if (error) {
+          console.error('Error fetching subscription:', error);
+          setIsPremiumUser(false);
+        } else {
+          setIsPremiumUser(data?.subscription_status === 'active');
+        }
+      } catch (error) {
+        console.error('Error fetching subscription:', error);
+        setIsPremiumUser(false);
+      } finally {
+        setLoadingSubscription(false);
+      }
+    };
+
+    fetchSubscription();
+  }, [user]);
 
   return (
     <div className="py-8 min-h-screen bg-gray-50">
@@ -309,12 +344,16 @@ const Jobs: React.FC = () => {
                       Accédez aux meilleures opportunités avec notre abonnement Premium
                     </p>
                     <div className="space-y-3">
-                      <Button variant="primary" className="w-full">
+                      <Button
+                        variant="primary"
+                        className="w-full"
+                        onClick={() => setIsPremiumModalOpen(true)}
+                      >
                         <Crown className="h-4 w-4 mr-2" />
                         Devenir Premium
                       </Button>
                       <p className="text-sm text-gray-500">
-                        À partir de 19€/mois • Accès illimité • Sans engagement
+                        99 AED/mois • Accès illimité • Sans engagement
                       </p>
                     </div>
                   </div>
@@ -628,6 +667,11 @@ const Jobs: React.FC = () => {
             </div>
           </div>
         )}
+
+        <PremiumModal
+          isOpen={isPremiumModalOpen}
+          onClose={() => setIsPremiumModalOpen(false)}
+        />
 
         {/* Job Alert CTA */}
         {filteredJobs.length > 0 && (

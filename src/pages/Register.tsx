@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, User, Eye, EyeOff, Crown, Check } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import Button from '../components/UI/Button';
+import PremiumModal from '../components/UI/PremiumModal';
+import { stripeProducts } from '../stripe-config';
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -15,12 +17,21 @@ const Register: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [accountType, setAccountType] = useState<'free' | 'premium' | null>(null);
+  const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
   const { signUp, loading } = useAuth();
   const navigate = useNavigate();
+
+  const premiumProduct = stripeProducts.find(p => p.name === 'Muhajir Premium');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    if (!accountType) {
+      setError('Veuillez sélectionner un type de compte');
+      return;
+    }
 
     if (formData.password !== formData.confirmPassword) {
       setError('Les mots de passe ne correspondent pas');
@@ -34,7 +45,12 @@ const Register: React.FC = () => {
 
     try {
       await signUp(formData.email, formData.password, formData.name);
-      navigate('/dashboard');
+
+      if (accountType === 'premium') {
+        setIsPremiumModalOpen(true);
+      } else {
+        navigate('/dashboard');
+      }
     } catch (err: any) {
       setError(err.message || 'Erreur lors de l\'inscription. Veuillez réessayer.');
     }
@@ -66,6 +82,101 @@ const Register: React.FC = () => {
                 <p className="text-red-800 text-sm">{error}</p>
               </div>
             )}
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-3">
+                Type de compte
+              </label>
+              <div className="grid grid-cols-1 gap-4">
+                <button
+                  type="button"
+                  onClick={() => setAccountType('free')}
+                  className={`relative border-2 rounded-xl p-4 text-left transition-all ${
+                    accountType === 'free'
+                      ? 'border-brand-green bg-brand-green/5'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-gray-900 mb-1">Compte Gratuit</h3>
+                      <p className="text-sm text-gray-600">Accès aux fonctionnalités de base</p>
+                      <ul className="mt-3 space-y-2">
+                        <li className="flex items-center text-sm text-gray-700">
+                          <Check className="h-4 w-4 text-brand-green mr-2 flex-shrink-0" />
+                          Guides de destinations
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <Check className="h-4 w-4 text-brand-green mr-2 flex-shrink-0" />
+                          Demandes d'assistance
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <Check className="h-4 w-4 text-brand-green mr-2 flex-shrink-0" />
+                          Offres d'emploi de base
+                        </li>
+                      </ul>
+                    </div>
+                    {accountType === 'free' && (
+                      <div className="ml-4">
+                        <div className="bg-brand-green rounded-full p-1">
+                          <Check className="h-5 w-5 text-white" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="mt-3 font-bold text-lg text-brand-green">Gratuit</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setAccountType('premium')}
+                  className={`relative border-2 rounded-xl p-4 text-left transition-all ${
+                    accountType === 'premium'
+                      ? 'border-yellow-500 bg-yellow-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center mb-1">
+                        <Crown className="h-5 w-5 text-yellow-500 mr-2" />
+                        <h3 className="font-semibold text-gray-900">Muhajir Premium</h3>
+                      </div>
+                      <p className="text-sm text-gray-600">Toutes les fonctionnalités + avantages exclusifs</p>
+                      <ul className="mt-3 space-y-2">
+                        <li className="flex items-center text-sm text-gray-700">
+                          <Check className="h-4 w-4 text-yellow-500 mr-2 flex-shrink-0" />
+                          Offres d'emploi premium exclusives
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <Check className="h-4 w-4 text-yellow-500 mr-2 flex-shrink-0" />
+                          Groupe WhatsApp privé
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <Check className="h-4 w-4 text-yellow-500 mr-2 flex-shrink-0" />
+                          Session de coaching mensuelle (1h)
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <Check className="h-4 w-4 text-yellow-500 mr-2 flex-shrink-0" />
+                          Support prioritaire 24/7
+                        </li>
+                      </ul>
+                    </div>
+                    {accountType === 'premium' && (
+                      <div className="ml-4">
+                        <div className="bg-yellow-500 rounded-full p-1">
+                          <Check className="h-5 w-5 text-white" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="mt-3 flex items-baseline">
+                    <span className="font-bold text-lg text-yellow-600">{premiumProduct?.price || 99} {premiumProduct?.currency || 'AED'}</span>
+                    <span className="text-sm text-gray-600 ml-1">/mois</span>
+                  </div>
+                </button>
+              </div>
+            </div>
 
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -201,6 +312,14 @@ const Register: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <PremiumModal
+        isOpen={isPremiumModalOpen}
+        onClose={() => {
+          setIsPremiumModalOpen(false);
+          navigate('/dashboard');
+        }}
+      />
     </div>
   );
 };
