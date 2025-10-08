@@ -201,7 +201,7 @@ const Jobs: React.FC = () => {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="border-white text-white hover:bg-white hover:text-brand-green"
+                className="border-white text-black hover:bg-white hover:text-brand-green"
               >
                 En savoir plus
               </Button>
@@ -214,7 +214,7 @@ const Jobs: React.FC = () => {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="border-white text-white hover:bg-white hover:text-brand-green"
+                className="border-white text-black hover:bg-white hover:text-brand-green"
               >
                 S'inscrire
               </Button>
@@ -227,7 +227,7 @@ const Jobs: React.FC = () => {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="border-white text-white hover:bg-white hover:text-brand-green"
+                className="border-white text-black hover:bg-white hover:text-brand-green"
               >
                 Découvrir
               </Button>
