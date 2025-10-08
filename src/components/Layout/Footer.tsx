@@ -28,12 +28,12 @@ const Footer: React.FC = () => {
                 />
               </div>
             </Link>
-            <p className="text-gray-300 mb-4 max-w-md">
+            <p className="text-black-300 mb-4 max-w-md">
               Votre plateforme de confiance pour un accompagnement personnalisé dans votre projet d'expatriation vers les terres d'Islam.
             </p>
             <div className="flex space-x-4">
-              <Mail className="h-5 w-5 text-gray-400" />
-              <span className="text-gray-300">contact@hijra.fr</span>
+              <Mail className="h-5 w-5 text-black-400" />
+              <span className="text-black-300">contact@hijra.fr</span>
             </div>
           </div>
 
