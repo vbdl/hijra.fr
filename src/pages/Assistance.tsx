@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin, DollarSign, Clock, Star, Users, FileText, Briefcase, Building } from 'lucide-react';
+import { ArrowRight, MapPin, DollarSign, Clock, Star, Users, FileText, Briefcase, Building, Calendar } from 'lucide-react';
 import { destinations } from '../data/destinations';
 import { countryServices } from '../data/countryServices';
 
@@ -120,7 +120,7 @@ const Assistance: React.FC = () => {
         {/* Available Countries */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
-            Pays avec services détaillés
+            Pays avec services disponibles maintenant
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {countryServices.map((country, index) => (
@@ -174,6 +174,47 @@ const Assistance: React.FC = () => {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+
+        {/* Coming Soon Countries */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
+            Prochainement disponibles
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {[
+              { name: 'Qatar', flag: '🇶🇦' },
+              { name: 'Malaisie', flag: '🇲🇾' },
+              { name: 'Arabie Saoudite', flag: '🇸🇦' },
+              { name: 'Maroc', flag: '🇲🇦' },
+              { name: 'Algérie', flag: '🇩🇿' }
+            ].map((country, index) => (
+              <div
+                key={country.name}
+                className="bg-white rounded-xl shadow-sm p-6 text-center animate-scale-in border-2 border-dashed border-gray-300 hover:border-brand-green transition-all duration-300"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="text-5xl mb-3">{country.flag}</div>
+                <h3 className="font-bold text-gray-900 mb-2">{country.name}</h3>
+                <div className="flex items-center justify-center text-sm text-gray-500">
+                  <Calendar className="h-4 w-4 mr-1" />
+                  <span>Bientôt</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <p className="text-gray-600 mb-4">
+              Vous souhaitez être informé du lancement des services pour ces pays ?
+            </p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center bg-brand-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-brand-green-dark transition-colors"
+            >
+              <Calendar className="h-5 w-5 mr-2" />
+              Me notifier du lancement
+            </Link>
           </div>
         </div>
 
