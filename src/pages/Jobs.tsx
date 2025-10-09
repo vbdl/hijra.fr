@@ -23,6 +23,7 @@ import { destinations } from '../data/destinations';
 import { useAuth } from '../contexts/AuthContext';
 import Button from '../components/UI/Button';
 import PremiumModal from '../components/UI/PremiumModal';
+import BookingModal from '../components/UI/BookingModal';
 import { supabase } from '../lib/supabase';
 
 const Jobs: React.FC = () => {
@@ -45,6 +46,7 @@ const Jobs: React.FC = () => {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isPremiumUser, setIsPremiumUser] = useState(false);
   const [loadingSubscription, setLoadingSubscription] = useState(true);
 
@@ -185,10 +187,11 @@ const Jobs: React.FC = () => {
               <Calendar className="h-8 w-8 mx-auto mb-4 text-yellow-300" />
               <h3 className="font-bold mb-2">Consultation gratuite</h3>
               <p className="text-sm text-green-100 mb-4">30 minutes avec un expert</p>
-              <Button 
-                variant="outline" 
-                size="sm" 
+              <Button
+                variant="outline"
+                size="sm"
                 className="border-white text-black hover:bg-white hover:text-brand-green"
+                onClick={() => setIsBookingModalOpen(true)}
               >
                 Réserver
               </Button>
@@ -671,6 +674,11 @@ const Jobs: React.FC = () => {
         <PremiumModal
           isOpen={isPremiumModalOpen}
           onClose={() => setIsPremiumModalOpen(false)}
+        />
+
+        <BookingModal
+          isOpen={isBookingModalOpen}
+          onClose={() => setIsBookingModalOpen(false)}
         />
 
         {/* Job Alert CTA */}
